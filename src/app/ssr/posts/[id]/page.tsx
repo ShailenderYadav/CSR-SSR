@@ -2,7 +2,6 @@ import { Post } from '@/types/post';
 import { notFound } from 'next/navigation';
 import InteractiveButton from '@/components/InteractiveButton';
 import Link from 'next/link';
-import type { Metadata } from 'next';
 
 async function getPost(id: string): Promise<Post> {
   try {
@@ -18,22 +17,6 @@ async function getPost(id: string): Promise<Post> {
   } catch {
     console.error('Error fetching post');
     throw new Error('Failed to fetch post');
-  }
-}
-
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const id = params.id;
-  try {
-    const post = await getPost(id);
-    return {
-      title: post.title,
-      description: post.description.substring(0, 160),
-    };
-  } catch {
-    return {
-      title: 'Post Not Found',
-      description: 'The requested post could not be found.',
-    };
   }
 }
 
