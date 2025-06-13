@@ -14,9 +14,9 @@ async function getPost(id: string): Promise<Post> {
     }
 
     return res.json();
-  } catch (error) {
-    console.error('Error fetching post:', error);
-    throw error;
+  } catch {
+    console.error('Error fetching post');
+    throw new Error('Failed to fetch post');
   }
 }
 
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
       title: post.title,
       description: post.description.substring(0, 160),
     };
-  } catch (error) {
+  } catch {
     return {
       title: 'Post Not Found',
       description: 'The requested post could not be found.',
@@ -43,7 +43,6 @@ export default async function PostDetailsPage({ params }: { params: { id: string
 
   try {
     post = await getPost(id);
-    console.log("post", post)
   } catch {
     notFound();
   }
