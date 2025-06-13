@@ -21,12 +21,8 @@ async function getPost(id: string): Promise<Post> {
   }
 }
 
-interface PageProps {
-  params: { id: string };
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata | undefined> {
-  const id = await Promise.resolve(params.id);
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const id = params.id;
   try {
     const post = await getPost(id);
     return {
@@ -41,8 +37,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata 
   }
 }
 
-export default async function PostDetailsPage({ params }: PageProps) {
-  const id = await Promise.resolve(params.id);
+export default async function PostDetailsPage({ params }: { params: { id: string } }) {
+  const id = params.id;
   let post: Post;
   const serverTime = new Date().toISOString();
 
