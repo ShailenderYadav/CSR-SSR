@@ -46,10 +46,10 @@ export default async function SSRPage() {
             className="block bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow"
           >
             <h2 className="text-xl font-semibold mb-2 line-clamp-2">{post.title}</h2>
-            <p className="text-gray-600 mb-4 line-clamp-3">{post.body}</p>
+            <p className="text-gray-600 mb-4 line-clamp-3">{post.category}</p>
             <div className="flex justify-between items-center text-sm text-gray-500">
               <span>Post ID: {post.id}</span>
-              <span>User ID: {post.userId}</span>
+              <span>Description: {post.description}</span>
             </div>
           </Link>
         ))}
