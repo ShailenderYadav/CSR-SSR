@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
     const post = await getPost(id);
     return {
       title: post.title,
-      description: post.body.substring(0, 160),
+      description: post.description.substring(0, 160),
     };
   } catch (error) {
     return {
@@ -44,7 +44,7 @@ export default async function PostDetailsPage({ params }: { params: { id: string
   try {
     post = await getPost(id);
     console.log("post", post)
-  } catch (error) {
+  } catch {
     notFound();
   }
 

@@ -1,6 +1,7 @@
 import { Post } from '@/types/post';
 import { notFound } from 'next/navigation';
 import InteractiveButton from '@/components/InteractiveButton';
+import Link from 'next/link';
 
 // This function runs on the server for each request
 async function getPost(id: string): Promise<Post> {
@@ -71,12 +72,12 @@ export default async function PostDetailsPage({ params }: { params: { id: string
                 <p className="text-sm text-gray-600">Post ID: {post.id}</p>
                 <p className="text-sm text-gray-600">User ID: {post.userId}</p>
               </div>
-              <a
+              <Link
                 href="/posts"
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
               >
                 Back to Posts
-              </a>
+              </Link>
             </div>
           </div>
         </div>
