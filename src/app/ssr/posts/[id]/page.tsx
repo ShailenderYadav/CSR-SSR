@@ -2,6 +2,7 @@ import { Post } from '@/types/post';
 import { notFound } from 'next/navigation';
 import InteractiveButton from '@/components/InteractiveButton';
 import Link from 'next/link';
+import type { Metadata, ResolvingMetadata } from 'next';
 
 async function getPost(id: string): Promise<Post> {
   try {
@@ -20,7 +21,11 @@ async function getPost(id: string): Promise<Post> {
   }
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: { id: string };
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata | undefined> {
   const id = await Promise.resolve(params.id);
   try {
     const post = await getPost(id);
@@ -36,7 +41,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   }
 }
 
-export default async function PostDetailsPage({ params }: { params: { id: string } }) {
+export default async function PostDetailsPage({ params }: PageProps) {
   const id = await Promise.resolve(params.id);
   let post: Post;
   const serverTime = new Date().toISOString();
