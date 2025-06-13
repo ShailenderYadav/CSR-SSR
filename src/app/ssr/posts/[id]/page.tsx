@@ -2,7 +2,7 @@ import { Post } from '@/types/post';
 import { notFound } from 'next/navigation';
 import InteractiveButton from '@/components/InteractiveButton';
 import Link from 'next/link';
-import type { Metadata, ResolvingMetadata } from 'next';
+import type { Metadata } from 'next';
 
 async function getPost(id: string): Promise<Post> {
   try {
